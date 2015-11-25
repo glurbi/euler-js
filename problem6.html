@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Problem 6</title>
+</head>
+<body id="foo">
+<script>
+
+    function log(s) {
+        document.getElementById('foo').innerHTML += ""+s+"</br>";
+    }
+
+    var n = 100;
+
+    var sumsquare = 0;
+    var squaresum = 0;
+    for (var i = 1; i <= n; i++) {
+        sumsquare += i*i;
+        squaresum += i;
+    }
+    squaresum *= squaresum;
+
+    var diff = squaresum - sumsquare;
+    log(diff);
+
+</script>
+</body>
+</html>
