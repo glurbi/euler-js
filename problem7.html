@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Problem 6</title>
+</head>
+<body id="foo">
+<script>
+
+    function log(s) {
+        document.getElementById('foo').innerHTML += ""+s+"</br>";
+    }
+
+    function isPrime(n) {
+        for (var i = 2; i < n; i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    var i = 0;
+    var n = 1;
+    while (i < 10001) {
+        n++;
+        if (isPrime(n)) {
+            i++
+        }
+    }
+
+    log(n);
+
+</script>
+</body>
+</html>
