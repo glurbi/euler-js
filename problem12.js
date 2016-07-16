@@ -1,3 +1,5 @@
+"use strict"
+
 var primes = [2];
 
 function isPrime(n) {
@@ -46,10 +48,29 @@ function primeFactors(n, pf) {
     }
 }
 
-function divisors(n) {
-    var c = 0;
-    for (var i=0; i<=n; i++) {
-        if (n % i == 0) c++;
+function primeFactorPowers(n, pfp) {
+    if (n == 1)
+        return [];
+    if (isPrime(n))
+        return [];
+    for (var i=0; i<primes.length; i++) {
+        var p = primes[i];
+        let power = 0;
+        while (n % p == 0) {
+            power++;
+            n = n / p;
+        }
+        if (power > 0)
+            pfp.push(power);
+        if (n == 1)
+            break;
+    }
+}
+
+function divisorsFromPrimeFactorsPowers(pfp) {
+    let c = 1;
+    for (let i=0; i<pfp.length;i++) {
+        c *= pfp[i]+1;
     }
     return c;
 }
@@ -57,15 +78,18 @@ function divisors(n) {
 fillPrimes(10000);
 var n = 1;
 var tr = 0;
-var c = 0;
 while (true) {
     tr = triangle(n);
-    //c = divisors(tr);
-    //console.log(c);
     var pf = [];
-    primeFactors(tr, pf)
-    console.log(tr + " = " + pf);
-    if (n > 30) break;
+    primeFactors(tr, pf);
+    var pfp = [];
+    primeFactorPowers(tr, pfp);
+    let divisors = divisorsFromPrimeFactorsPowers(pfp);
+    console.log(tr + " = [" + pf + "] [" + pfp + "] " + divisors);
+
+    if (divisors > 500)
+        break;
+
     n++;
 }
 
