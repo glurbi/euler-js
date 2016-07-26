@@ -5,7 +5,7 @@
             "name": "Launch",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceRoot}/problem17.js",
+            "program": "${workspaceRoot}/problem18.js",
             "stopOnEntry": false,
             "args": [],
             "cwd": "${workspaceRoot}",
