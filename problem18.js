@@ -19,7 +19,7 @@ let input = `
 
 class Problem18 {
 
-    static asNumbers(input) {
+    asNumbers(input) {
         let result = [];
         let lines = input.split('\n');
         for (let line of lines) {
@@ -35,9 +35,32 @@ class Problem18 {
         return result;
     }
 
-    static solve() {
-        console.log(Problem18.asNumbers(input));
+    solve(line, column, path, sum) {
+        let val = this.lines[line][column];
+        path = path.slice(0);
+        path.push(val);
+        sum += val;
+        if (line == this.lines.length-1) {
+            if (sum > this.bestSum) {
+                this.bestSum = sum;
+                this.bestPath = path;
+                console.log(this.bestPath + " => " + this.bestSum);
+            }
+            return;
+        }
+        this.solve(line+1, column, path, sum);
+        this.solve(line+1, column+1, path, sum);
     }
+
+    run() {
+        this.bestPath = null;
+        this.bestSum = 0;
+        this.lines = this.asNumbers(input);
+        console.log(this.lines);
+        this.solve(0, 0, [], 0);
+    }
+
 }
 
-Problem18.solve(); 
+let p18 = new Problem18();
+p18.run(); 
